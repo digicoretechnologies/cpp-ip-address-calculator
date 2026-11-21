@@ -1,0 +1,23 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+
+    string ipAddress;
+    int prefix;
+
+    cout << "===== IP ADDRESS CALCULATOR =====" << endl;
+
+    cout << "Enter IP address: ";
+    cin >> ipAddress;
+
+    cout << "Enter subnet prefix (e.g. 24): ";
+    cin >> prefix;
+
+    cout << "\nIP Address: " << ipAddress << endl;
+    cout << "CIDR Prefix: /" << prefix << endl;
+
+    return 0;
+}
