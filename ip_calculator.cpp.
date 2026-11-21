@@ -19,5 +19,71 @@ int main() {
     cout << "\nIP Address: " << ipAddress << endl;
     cout << "CIDR Prefix: /" << prefix << endl;
 
+    unsigned int broadcast = network | (0xFFFFFFFFu ^ mask);
+
+    cout << "Broadcast Address: "
+         << ((broadcast >> 24) & 255) << "."
+         << ((broadcast >> 16) & 255) << "."
+         << ((broadcast >> 8) & 255) << "."
+         << (broadcast & 255) << endl;
+
+    int hostBits = 32 - prefix;
+
+    unsigned long long totalAddresses =
+        1ULL << hostBits;
+
+    unsigned long long usableHosts = 0;
+
+    if (prefix <= 30) {
+        usableHosts = totalAddresses - 2;
+    }
+
+    cout << "Host Bits: " << hostBits << endl;
+
+    cout << "Total Addresses: "
+         << totalAddresses << endl;
+
+    cout << "Usable Hosts: "
+         << usableHosts << endl;
+
+    cout << "\n================================" << endl;
+    cout << "       NETWORK REPORT" << endl;
+    cout << "================================" << endl;
+
+    cout << "IP Address       : " << ipAddress << endl;
+    cout << "CIDR Prefix      : /" << prefix << endl;
+
+    cout << "Subnet Mask      : "
+         << ((mask >> 24) & 255) << "."
+         << ((mask >> 16) & 255) << "."
+         << ((mask >> 8) & 255) << "."
+         << (mask & 255) << endl;
+
+    cout << "Network Address  : "
+         << ((network >> 24) & 255) << "."
+         << ((network >> 16) & 255) << "."
+         << ((network >> 8) & 255) << "."
+         << (network & 255) << endl;
+
+    cout << "Broadcast Address: "
+         << ((broadcast >> 24) & 255) << "."
+         << ((broadcast >> 16) & 255) << "."
+         << ((broadcast >> 8) & 255) << "."
+         << (broadcast & 255) << endl;
+
+    cout << "Usable Hosts     : " << usableHosts << endl;
+
+    cout << "================================" << endl;
+
+if (prefix <= 30) {
+    usableHosts = totalAddresses - 2;
+}
+else if (prefix == 31) {
+    usableHosts = 2;
+}
+else {
+    usableHosts = 1;
+}
+
     return 0;
 }
